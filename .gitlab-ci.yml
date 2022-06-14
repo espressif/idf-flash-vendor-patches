@@ -1,0 +1,37 @@
+stages:
+  - test
+
+# WORKFLOW RULES
+# ------------------------------------------------------------------------------------------------------
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH'
+# ------------------------------------------------------------------------------------------------------
+
+
+# TEMPLATES
+# ------------------------------------------------------------------------------------------------------
+# THIS IS JUST TEMPLATE DEMO - REPLACE BY YOUR CONFIG
+.base_template:
+  image: python:3.8-slim-buster
+  tags:
+    - test
+# THIS IS JUST TEMPLATE DEMO - REPLACE BY YOUR CONFIG
+# --------------------------------------------------------------------------------------------------
+
+
+# JOBS
+# ------------------------------------------------------------------------------------------------------
+# THIS IS JUST JOB DEMO - REPLACE BY YOUR CONFIG
+test_task:
+  stage: test
+  extends: .base_template
+  script:
+    - echo "This is dummy test"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+# THIS IS JUST JOB DEMO - REPLACE BY YOUR CONFIG
+# ------------------------------------------------------------------------------------------------------

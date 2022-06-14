@@ -1,0 +1,1 @@
+# idf-flash-vendor-patches
