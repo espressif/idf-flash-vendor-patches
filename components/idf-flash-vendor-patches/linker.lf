@@ -1,0 +1,8 @@
+[mapping:xmc_patches]
+archive: libbootloader_support.a
+entries:
+    flash_qio_mode: bootloader_read_status_8b_rdsr (noflash)
+    flash_qio_mode: bootloader_read_status_8b_rdsr2 (noflash)
+    flash_qio_mode: bootloader_read_status_8b_rdsr3 (noflash)
+    flash_qio_mode: bootloader_write_status_16b_wrsr (noflash)
+    flash_qio_mode: bootloader_write_status_8b_wrsr3 (noflash)
