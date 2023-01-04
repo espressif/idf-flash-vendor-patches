@@ -1,0 +1,4 @@
+dependencies:
+  idf-flash-vendor-patches:
+    path: components/idf-flash-vendor-patches
+    git: https://github.com/espressif/idf-flash-vendor-patches.git
