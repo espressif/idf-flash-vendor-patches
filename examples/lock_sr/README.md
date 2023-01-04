@@ -13,8 +13,8 @@ Targets:
 - ESP32-C3
 
 Branches
-- master (5.0-dev)
-- release/v4.4 (v4.4.1)
-- release/v4.3 (v4.3.3)
+- v5.0 and later
+- v4.4.1+ (release/v4.4)
+- v4.3.3+ (release/v4.3)
 
 (More details to be updated)

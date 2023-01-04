@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Unlicense OR CC0-1.0
  */
 
+#include <inttypes.h>
 #include "esp_bit_defs.h"
 #include "esp_attr.h"
 #include "esp_log.h"
@@ -171,7 +172,7 @@ void IRAM_ATTR xmc_lock_sr(uint32_t good_value, bool permanent)
             ESP_LOGI(TAG, "Try lock SR until power cycle.");
         }
         ESP_LOGI(TAG, "SR3 update: %02X -> %02X (%02X).", sr3_before, sr3_after, sr3_set);
-        ESP_LOGI(TAG, "SR1 & SR2 update: %02X%02X -> %02X%02X (%04X).", sr2_before, sr1_before, sr2_after, sr1_after, sr12_set);
+        ESP_LOGI(TAG, "SR1 & SR2 update: %02X%02X -> %02X%02X (%04"PRIX32").", sr2_before, sr1_before, sr2_after, sr1_after, sr12_set);
     }
 }
 
@@ -185,7 +186,7 @@ void xmc_check_lock_sr(bool permanent)
     xmc_read_flash_id(&flash_id, &sfdp_06, &sfdp_f4);
 
     if (!IS_XMC(flash_id)) {
-        ESP_LOGI(TAG, "non-xmc (%06X). SR lock skipped.", flash_id);
+        ESP_LOGI(TAG, "non-xmc (%06"PRIX32"). SR lock skipped.", flash_id);
         return;
     } else if (!XMC_NEEDS_SR_LOCK(sfdp_06, sfdp_f4)) {
         ESP_LOGI(TAG, "ver not match (%02X, %02X), SR lock skipped.", sfdp_06, sfdp_f4);
@@ -202,7 +203,7 @@ void xmc_check_lock_sr(bool permanent)
     } else if (flash_id == 0x204018) {
         good_value = 0x600200;
     } else {
-        ESP_LOGE(TAG, "Unsupported XMC model: %06X", flash_id);
+        ESP_LOGE(TAG, "Unsupported XMC model: %06"PRIX32, flash_id);
         return;
     }
 
